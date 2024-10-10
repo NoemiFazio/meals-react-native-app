@@ -1,21 +1,21 @@
-import Category from "../models/category";
-import Meal from "../models/meal";
+import { createCategory, Category } from "../models/category";
+import { createMeal, Meal } from "../models/meal";
 
-export const CATEGORIES = [
-  new Category("c1", "Italian", "#f5428d"),
-  new Category("c2", "Quick & Easy", "#f54242"),
-  new Category("c3", "Hamburgers", "#f5a442"),
-  new Category("c4", "German", "#f5d142"),
-  new Category("c5", "Light & Lovely", "#368dff"),
-  new Category("c6", "Exotic", "#41d95d"),
-  new Category("c7", "Breakfast", "#9eecff"),
-  new Category("c8", "Asian", "#b9ffb0"),
-  new Category("c9", "French", "#ffc7ff"),
-  new Category("c10", "Summer", "#47fced"),
+export const CATEGORIES: Category[] = [
+  createCategory("c1", "Italian", "#f5428d"),
+  createCategory("c2", "Quick & Easy", "#f54242"),
+  createCategory("c3", "Hamburgers", "#f5a442"),
+  createCategory("c4", "German", "#f5d142"),
+  createCategory("c5", "Light & Lovely", "#368dff"),
+  createCategory("c6", "Exotic", "#41d95d"),
+  createCategory("c7", "Breakfast", "#9eecff"),
+  createCategory("c8", "Asian", "#b9ffb0"),
+  createCategory("c9", "French", "#ffc7ff"),
+  createCategory("c10", "Summer", "#47fced"),
 ];
 
-export const MEALS = [
-  new Meal(
+export const MEALS: Meal[] = [
+  createMeal(
     "m1",
     ["c1", "c2"],
     "Spaghetti with Tomato Sauce",
@@ -46,7 +46,7 @@ export const MEALS = [
     true
   ),
 
-  new Meal(
+  createMeal(
     "m2",
     ["c2"],
     "Toast Hawaii",
@@ -72,7 +72,7 @@ export const MEALS = [
     false
   ),
 
-  new Meal(
+  createMeal(
     "m3",
     ["c3"],
     "Classic Hamburger",
@@ -101,7 +101,7 @@ export const MEALS = [
     true
   ),
 
-  new Meal(
+  createMeal(
     "m4",
     ["c4"],
     "Wiener Schnitzel",
@@ -134,7 +134,7 @@ export const MEALS = [
     false
   ),
 
-  new Meal(
+  createMeal(
     "m5",
     ["c2", "c5", "c10"],
     "Salad with Smoked Salmon",
@@ -166,7 +166,7 @@ export const MEALS = [
     true
   ),
 
-  new Meal(
+  createMeal(
     "m6",
     ["c6", "c10"],
     "Delicious Orange Mousse",
@@ -199,7 +199,7 @@ export const MEALS = [
     false
   ),
 
-  new Meal(
+  createMeal(
     "m7",
     ["c7"],
     "Pancakes",
@@ -228,7 +228,7 @@ export const MEALS = [
     false
   ),
 
-  new Meal(
+  createMeal(
     "m8",
     ["c8"],
     "Creamy Indian Chicken Curry",
@@ -259,7 +259,7 @@ export const MEALS = [
     true
   ),
 
-  new Meal(
+  createMeal(
     "m9",
     ["c9"],
     "Chocolate Souffle",
@@ -305,7 +305,7 @@ export const MEALS = [
     true,
     false
   ),
-  new Meal(
+  createMeal(
     "m10",
     ["c2", "c5", "c10"],
     "Asparagus Salad with Cherry Tomatoes",
