@@ -1,7 +1,7 @@
 import { FlatList, ListRenderItemInfo } from "react-native";
 import { CATEGORIES } from "../data/dummy-data";
 import { Category } from "../models/category";
-import CategoryGridTile from "../components/CategoryGridtile";
+import CategoryGridTile from "../components/CategoryGridTile";
 
 export default function CategoriesScreen() {
   return (
@@ -9,6 +9,7 @@ export default function CategoriesScreen() {
       data={CATEGORIES}
       keyExtractor={(item) => item.id}
       renderItem={renderCategoryItem}
+      numColumns={2}
     />
   );
 }
