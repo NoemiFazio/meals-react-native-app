@@ -2,8 +2,26 @@ import { FlatList, ListRenderItemInfo } from "react-native";
 import { CATEGORIES } from "../data/dummy-data";
 import { Category } from "../models/category";
 import CategoryGridTile from "../components/CategoryGridTile";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { StackParamList } from "../App";
 
-export default function CategoriesScreen() {
+export default function CategoriesScreen({
+  navigation,
+}: CategoriesScreenProps) {
+  function renderCategoryItem(itemData: ListRenderItemInfo<Category>) {
+    function pressHandler() {
+      navigation.navigate("MealsOverview");
+    }
+
+    return (
+      <CategoryGridTile
+        title={itemData.item.title}
+        color={itemData.item.color}
+        onPress={pressHandler}
+      />
+    );
+  }
+
   return (
     <FlatList
       data={CATEGORIES}
@@ -14,8 +32,6 @@ export default function CategoriesScreen() {
   );
 }
 
-function renderCategoryItem(itemData: ListRenderItemInfo<Category>) {
-  return (
-    <CategoryGridTile title={itemData.item.title} color={itemData.item.color} />
-  );
-}
+type CategoriesScreenProps = {
+  navigation: NativeStackNavigationProp<StackParamList, "MealsCategories">;
+};
