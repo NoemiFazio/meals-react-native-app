@@ -6,7 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MealsOverviewScreen from "./screens/MealsOverviewScreen";
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<StackParamList>();
 
 export default function App() {
   return (
@@ -14,8 +14,8 @@ export default function App() {
       <StatusBar style="dark" />
       <NavigationContainer>
         {/* You can set the main page thanks to the prop initialRouteName, otherwise the
-        first child inside Stack.Navigator (in this case, CategoriesScreen will be used
-        as main page)
+        first child inside Stack.Navigator (in this case, the Stack.Screen that has 
+        component={CategoriesScreen} will be used as main page)
         */}
         <Stack.Navigator initialRouteName="MealsCategories">
           <Stack.Screen name="MealsCategories" component={CategoriesScreen} />
@@ -32,5 +32,5 @@ const styles = StyleSheet.create({
 
 export type StackParamList = {
   MealsCategories: undefined;
-  MealsOverview: undefined;
+  MealsOverview: { categoryId: string };
 };

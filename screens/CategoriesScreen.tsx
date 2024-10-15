@@ -10,7 +10,9 @@ export default function CategoriesScreen({
 }: CategoriesScreenProps) {
   function renderCategoryItem(itemData: ListRenderItemInfo<Category>) {
     function pressHandler() {
-      navigation.navigate("MealsOverview");
+      navigation.navigate("MealsOverview", {
+        categoryId: itemData.item.id,
+      });
     }
 
     return (
