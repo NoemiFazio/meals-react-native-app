@@ -4,6 +4,7 @@ import { CategoryGridTileProps } from "./CategoryGridTile.props";
 export default function CategoryGridTile({
   title,
   color,
+  onPress,
 }: CategoryGridTileProps) {
   return (
     <View style={[styles.gridItem]}>
@@ -13,6 +14,7 @@ export default function CategoryGridTile({
           pressed ? styles.buttonPressed : null,
         ]}
         android_ripple={{ color: "#ccc" }}
+        onPress={onPress}
       >
         <View style={[styles.innerContainer, { backgroundColor: color }]}>
           <Text style={styles.title}>{title}</Text>
