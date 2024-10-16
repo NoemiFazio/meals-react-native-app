@@ -13,10 +13,6 @@ export default function App() {
     <>
       <StatusBar style="dark" />
       <NavigationContainer>
-        {/* You can set the main page thanks to the prop initialRouteName, otherwise the
-        first child inside Stack.Navigator (in this case, the Stack.Screen that has 
-        component={CategoriesScreen} will be used as main page)
-        */}
         <Stack.Navigator initialRouteName="MealsCategories">
           <Stack.Screen name="MealsCategories" component={CategoriesScreen} />
           <Stack.Screen name="MealsOverview" component={MealsOverviewScreen} />

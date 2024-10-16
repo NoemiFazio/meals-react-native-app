@@ -1,18 +1,45 @@
-import { Text, View, StyleSheet } from "react-native";
-import { MEALS } from "../data/dummy-data";
+import {
+  Text,
+  View,
+  StyleSheet,
+  FlatList,
+  ListRenderItemInfo,
+} from "react-native";
 import { RouteProp } from "@react-navigation/native";
 import { StackParamList } from "../App";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-// import { useRoute } from "@react-navigation/native";
+import { MEALS } from "../data/dummy-data";
+import MealItem from "../components/MealItem";
+import { Meal } from "../models/meal";
 
 export default function MealsOverviewScreen({
   route,
 }: MealsOverviewScreenProps) {
-  // alternativa all'uso di {route} tramite props, è l'uso di useRoute() con const route = useRoute()
   const catId = route.params.categoryId;
+  const displayedMeals = MEALS.filter((mealItem) => {
+    return mealItem.categoryIds.indexOf(catId) >= 0;
+  });
+
+  function renderMealItem(itemData: ListRenderItemInfo<Meal>) {
+    const item = itemData.item;
+
+    const mealItemProps = {
+      title: item.title,
+      imageUrl: item.imageUrl,
+      duration: item.duration,
+      affordability: item.affordability,
+      complexity: item.complexity,
+    };
+
+    return <MealItem {...mealItemProps} />;
+  }
+
   return (
     <View style={styles.container}>
-      <Text>Meals Overview Screen - {catId}</Text>
+      <FlatList
+        data={displayedMeals}
+        keyExtractor={(item) => item.id}
+        renderItem={renderMealItem}
+      />
     </View>
   );
 }
