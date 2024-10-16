@@ -13,9 +13,38 @@ export default function App() {
     <>
       <StatusBar style="dark" />
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="MealsCategories">
-          <Stack.Screen name="MealsCategories" component={CategoriesScreen} />
-          <Stack.Screen name="MealsOverview" component={MealsOverviewScreen} />
+        <Stack.Navigator
+          initialRouteName="MealsCategories"
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: "white",
+            },
+            headerTintColor: "black",
+            contentStyle: {
+              backgroundColor: "white",
+            },
+          }}
+        >
+          <Stack.Screen
+            name="MealsCategories"
+            component={CategoriesScreen}
+            options={{
+              title: "All Meal Categories",
+            }}
+          />
+          <Stack.Screen
+            name="MealsOverview"
+            component={MealsOverviewScreen}
+            // route e navigation fanno parte dell'oggetto che otteniamo automaticamente da react navigation
+            // questo è un modo per settare dinamicamente il titolo della MealsOverviewScreen, ma lo commentiamo
+            // perchè è possibile ottenere lo stesso risultato direttamente dal componente MealsOverviewScreen.
+            // options={({ route, navigation }) => {
+            //   const catId = route.params.categoryId;
+            //   return {
+            //     title: catId,
+            //   };
+            // }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </>
@@ -28,5 +57,7 @@ const styles = StyleSheet.create({
 
 export type StackParamList = {
   MealsCategories: undefined;
-  MealsOverview: { categoryId: string };
+  MealsOverview: {
+    categoryId: string;
+  };
 };
