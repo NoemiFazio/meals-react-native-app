@@ -1,5 +1,4 @@
 import { Pressable, View, Text, StyleSheet, Platform } from "react-native";
-import { CategoryGridTileProps } from "./CategoryGridTile.props";
 
 export default function CategoryGridTile({
   title,
@@ -59,3 +58,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
 });
+
+interface CategoryGridTileProps {
+  title: string;
+  color: string;
+  onPress?: () => void;
+}

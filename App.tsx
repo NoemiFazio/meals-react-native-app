@@ -5,6 +5,8 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MealsOverviewScreen from "./screens/MealsOverviewScreen";
+import MealScreen from "./screens/MealScreen";
+import { Meal } from "./models/meal";
 
 const Stack = createNativeStackNavigator<StackParamList>();
 
@@ -32,19 +34,8 @@ export default function App() {
               title: "All Meal Categories",
             }}
           />
-          <Stack.Screen
-            name="MealsOverview"
-            component={MealsOverviewScreen}
-            // route e navigation fanno parte dell'oggetto che otteniamo automaticamente da react navigation
-            // questo è un modo per settare dinamicamente il titolo della MealsOverviewScreen, ma lo commentiamo
-            // perchè è possibile ottenere lo stesso risultato direttamente dal componente MealsOverviewScreen.
-            // options={({ route, navigation }) => {
-            //   const catId = route.params.categoryId;
-            //   return {
-            //     title: catId,
-            //   };
-            // }}
-          />
+          <Stack.Screen name="MealsOverview" component={MealsOverviewScreen} />
+          <Stack.Screen name="Meal" component={MealScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </>
@@ -60,4 +51,5 @@ export type StackParamList = {
   MealsOverview: {
     categoryId: string;
   };
+  Meal: Meal;
 };
