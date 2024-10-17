@@ -14,12 +14,14 @@ export default function MealItem({
   duration,
   complexity,
   affordability,
+  onPress,
 }: MealItemProps) {
   return (
     <View style={styles.mealItem}>
       <Pressable
         android_ripple={{ color: "#ccc" }}
         style={({ pressed }) => [pressed ? styles.cardPressed : null]}
+        onPress={onPress}
       >
         <View style={styles.innerContainer}>
           <View>
