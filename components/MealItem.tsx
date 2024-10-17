@@ -6,32 +6,39 @@ import {
   StyleSheet,
   Platform,
 } from "react-native";
-import { MealItemProps } from "./MealItem.props";
+import { useNavigation } from "@react-navigation/native";
+import { Meal } from "../models/meal";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { StackParamList } from "../App";
 
-export default function MealItem({
-  title,
-  imageUrl,
-  duration,
-  complexity,
-  affordability,
-  onPress,
-}: MealItemProps) {
+export default function MealItem(props: Meal) {
+  const navigation = useNavigation<NativeStackNavigationProp<StackParamList>>();
+  function pressHandler() {
+    navigation.navigate("Meal", {
+      ...props,
+    });
+  }
+
   return (
     <View style={styles.mealItem}>
       <Pressable
         android_ripple={{ color: "#ccc" }}
         style={({ pressed }) => [pressed ? styles.cardPressed : null]}
-        onPress={onPress}
+        onPress={pressHandler}
       >
         <View style={styles.innerContainer}>
           <View>
-            <Image source={{ uri: imageUrl }} style={styles.image} />
-            <Text style={styles.title}>{title}</Text>
+            <Image source={{ uri: props.imageUrl }} style={styles.image} />
+            <Text style={styles.title}>{props.title}</Text>
           </View>
           <View style={styles.details}>
-            <Text style={styles.detailItem}>{duration}m</Text>
-            <Text style={styles.detailItem}>{complexity.toUpperCase()}</Text>
-            <Text style={styles.detailItem}>{affordability.toUpperCase()}</Text>
+            <Text style={styles.detailItem}>{props.duration}m</Text>
+            <Text style={styles.detailItem}>
+              {props.complexity.toUpperCase()}
+            </Text>
+            <Text style={styles.detailItem}>
+              {props.affordability.toUpperCase()}
+            </Text>
           </View>
         </View>
       </Pressable>

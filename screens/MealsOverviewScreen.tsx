@@ -1,10 +1,4 @@
-import {
-  Text,
-  View,
-  StyleSheet,
-  FlatList,
-  ListRenderItemInfo,
-} from "react-native";
+import { View, StyleSheet, FlatList, ListRenderItemInfo } from "react-native";
 import { RouteProp } from "@react-navigation/native";
 import { StackParamList } from "../App";
 import { MEALS, CATEGORIES } from "../data/dummy-data";
@@ -34,19 +28,8 @@ export default function MealsOverviewScreen({
   function renderMealItem(itemData: ListRenderItemInfo<Meal>) {
     const item = itemData.item;
 
-    function pressHandler() {
-      navigation.navigate("Meal", {
-        ...item,
-      });
-    }
-
     const mealItemProps = {
-      title: item.title,
-      imageUrl: item.imageUrl,
-      duration: item.duration,
-      affordability: item.affordability,
-      complexity: item.complexity,
-      onPress: pressHandler,
+      ...item,
     };
 
     return <MealItem {...mealItemProps} />;

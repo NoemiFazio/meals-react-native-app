@@ -5,13 +5,13 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useLayoutEffect } from "react";
 
 export default function MealScreen({ route, navigation }: MealsScreenProps) {
-  const mealTitle = route.params.title;
+  const { title } = route.params;
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: mealTitle,
+      title: title,
     });
-  }, [mealTitle, navigation]);
+  }, [title, navigation]);
 
   return (
     <View>
