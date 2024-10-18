@@ -5,6 +5,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useLayoutEffect } from "react";
 import MealDetails from "../components/MealDetails";
 import List from "../components/MealDetail/List";
+import IconButton from "../components/IconButton";
 
 export default function MealScreen({ route, navigation }: MealsScreenProps) {
   const {
@@ -17,11 +18,24 @@ export default function MealScreen({ route, navigation }: MealsScreenProps) {
     duration,
   } = route.params;
 
+  function headerButtonPressHandler() {
+    console.log("cliccato");
+  }
+
   useLayoutEffect(() => {
     navigation.setOptions({
       title: title,
+      headerRight: () => {
+        return (
+          <IconButton
+            onPress={headerButtonPressHandler}
+            icon="star"
+            color="black"
+          />
+        );
+      },
     });
-  }, [title, navigation]);
+  }, [title, navigation, headerButtonPressHandler]);
 
   return (
     <ScrollView style={styles.rootContainer}>
