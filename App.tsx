@@ -7,8 +7,36 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MealsOverviewScreen from "./screens/MealsOverviewScreen";
 import MealScreen from "./screens/MealScreen";
 import { Meal } from "./models/meal";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import FavouritesScreen from "./screens/FavouritesScreen";
 
 const Stack = createNativeStackNavigator<StackParamList>();
+const Drawer = createDrawerNavigator<StackParamList>();
+
+function DrawerNavigator() {
+  return (
+    <Drawer.Navigator
+    // screenOptions={{
+    //   headerStyle: {
+    //     backgroundColor: "white",
+    //   },
+    //   headerTintColor: "black",
+    //   sceneContainerStyle: {
+    //     backgroundColor: "white",
+    //   },
+    // }}
+    >
+      <Drawer.Screen
+        name="Categories"
+        component={CategoriesScreen}
+        options={{
+          title: "All Categories",
+        }}
+      />
+      <Drawer.Screen name="Favourites" component={FavouritesScreen} />
+    </Drawer.Navigator>
+  );
+}
 
 export default function App() {
   return (
@@ -16,7 +44,7 @@ export default function App() {
       <StatusBar style="dark" />
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="MealsCategories"
+          // initialRouteName="MealsCategories"
           screenOptions={{
             headerStyle: {
               backgroundColor: "white",
@@ -28,10 +56,10 @@ export default function App() {
           }}
         >
           <Stack.Screen
-            name="MealsCategories"
-            component={CategoriesScreen}
+            name="Drawer"
+            component={DrawerNavigator}
             options={{
-              title: "All Meal Categories",
+              headerShown: false,
             }}
           />
           <Stack.Screen name="MealsOverview" component={MealsOverviewScreen} />
@@ -47,7 +75,10 @@ const styles = StyleSheet.create({
 });
 
 export type StackParamList = {
+  Categories: undefined;
+  Favourites: undefined;
   MealsCategories: undefined;
+  Drawer: undefined;
   MealsOverview: {
     categoryId: string;
   };
