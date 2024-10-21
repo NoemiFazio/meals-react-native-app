@@ -9,11 +9,11 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { Meal } from "../models/meal";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { StackParamList } from "../App";
+import { ParamList } from "../App";
 import MealDetails from "./MealDetails";
 
 export default function MealItem(props: Meal) {
-  const navigation = useNavigation<NativeStackNavigationProp<StackParamList>>();
+  const navigation = useNavigation<NativeStackNavigationProp<ParamList>>();
   function pressHandler() {
     navigation.navigate("Meal", {
       ...props,

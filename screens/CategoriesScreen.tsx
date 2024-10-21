@@ -3,7 +3,7 @@ import { CATEGORIES } from "../data/dummy-data";
 import { Category } from "../models/category";
 import CategoryGridTile from "../components/CategoryGridTile";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { StackParamList } from "../App";
+import { ParamList } from "../App";
 
 export default function CategoriesScreen({
   navigation,
@@ -35,5 +35,5 @@ export default function CategoriesScreen({
 }
 
 type CategoriesScreenProps = {
-  navigation: NativeStackNavigationProp<StackParamList, "MealsCategories">;
+  navigation: NativeStackNavigationProp<ParamList, "MealsCategories">;
 };

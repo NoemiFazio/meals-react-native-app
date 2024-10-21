@@ -9,31 +9,39 @@ import MealScreen from "./screens/MealScreen";
 import { Meal } from "./models/meal";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import FavouritesScreen from "./screens/FavouritesScreen";
+import { Ionicons } from "@expo/vector-icons";
 
-const Stack = createNativeStackNavigator<StackParamList>();
-const Drawer = createDrawerNavigator<StackParamList>();
+const Stack = createNativeStackNavigator<ParamList>();
+const Drawer = createDrawerNavigator<ParamList>();
 
 function DrawerNavigator() {
   return (
     <Drawer.Navigator
-    // screenOptions={{
-    //   headerStyle: {
-    //     backgroundColor: "white",
-    //   },
-    //   headerTintColor: "black",
-    //   sceneContainerStyle: {
-    //     backgroundColor: "white",
-    //   },
-    // }}
+      screenOptions={{
+        drawerActiveBackgroundColor: "ghostwhite",
+        drawerActiveTintColor: "black",
+      }}
     >
       <Drawer.Screen
         name="Categories"
         component={CategoriesScreen}
         options={{
           title: "All Categories",
+          drawerIcon: ({ color, size }) => (
+            <Ionicons color={color} size={size} name="list" />
+          ),
         }}
       />
-      <Drawer.Screen name="Favourites" component={FavouritesScreen} />
+      <Drawer.Screen
+        name="Favourites"
+        component={FavouritesScreen}
+        options={{
+          title: "Your Favourites",
+          drawerIcon: ({ color, size }) => (
+            <Ionicons color={color} size={size} name="star" />
+          ),
+        }}
+      />
     </Drawer.Navigator>
   );
 }
@@ -44,7 +52,6 @@ export default function App() {
       <StatusBar style="dark" />
       <NavigationContainer>
         <Stack.Navigator
-          // initialRouteName="MealsCategories"
           screenOptions={{
             headerStyle: {
               backgroundColor: "white",
@@ -74,7 +81,7 @@ const styles = StyleSheet.create({
   container: {},
 });
 
-export type StackParamList = {
+export type ParamList = {
   Categories: undefined;
   Favourites: undefined;
   MealsCategories: undefined;
