@@ -1,6 +1,6 @@
 import { View, StyleSheet, FlatList, ListRenderItemInfo } from "react-native";
 import { RouteProp } from "@react-navigation/native";
-import { StackParamList } from "../App";
+import { ParamList } from "../App";
 import { MEALS, CATEGORIES } from "../data/dummy-data";
 import MealItem from "../components/MealItem";
 import { Meal } from "../models/meal";
@@ -54,6 +54,6 @@ const styles = StyleSheet.create({
 });
 
 type MealsOverviewScreenProps = {
-  route: RouteProp<StackParamList, "MealsOverview">;
-  navigation: NativeStackNavigationProp<StackParamList, "MealsOverview">;
+  route: RouteProp<ParamList, "MealsOverview">;
+  navigation: NativeStackNavigationProp<ParamList, "MealsOverview">;
 };

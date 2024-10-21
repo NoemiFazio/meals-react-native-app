@@ -1,6 +1,6 @@
 import { RouteProp } from "@react-navigation/native";
 import { Image, Text, View, StyleSheet, ScrollView } from "react-native";
-import { StackParamList } from "../App";
+import { ParamList } from "../App";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useLayoutEffect } from "react";
 import MealDetails from "../components/MealDetails";
@@ -94,6 +94,6 @@ const styles = StyleSheet.create({
 });
 
 type MealsScreenProps = {
-  route: RouteProp<StackParamList, "Meal">;
-  navigation: NativeStackNavigationProp<StackParamList, "Meal">;
+  route: RouteProp<ParamList, "Meal">;
+  navigation: NativeStackNavigationProp<ParamList, "Meal">;
 };
