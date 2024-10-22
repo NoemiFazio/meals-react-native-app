@@ -2,10 +2,11 @@ import { RouteProp } from "@react-navigation/native";
 import { Image, Text, View, StyleSheet, ScrollView } from "react-native";
 import { ParamList } from "../App";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { useLayoutEffect } from "react";
+import { useContext, useLayoutEffect } from "react";
 import MealDetails from "../components/MealDetails";
 import List from "../components/MealDetail/List";
 import IconButton from "../components/IconButton";
+import { FavouritesContext } from "../store/context/favourites-context";
 
 export default function MealScreen({ route, navigation }: MealsScreenProps) {
   const {
@@ -16,10 +17,19 @@ export default function MealScreen({ route, navigation }: MealsScreenProps) {
     affordability,
     complexity,
     duration,
+    id,
   } = route.params;
 
-  function headerButtonPressHandler() {
-    console.log("cliccato");
+  const favouriteMealsCtx = useContext(FavouritesContext);
+
+  const mealIsFavourite = favouriteMealsCtx.ids.includes(id);
+
+  function changeFavouriteStatusHandler() {
+    if (mealIsFavourite) {
+      favouriteMealsCtx.removeFavourite(id);
+    } else {
+      favouriteMealsCtx.addFavourite(id);
+    }
   }
 
   useLayoutEffect(() => {
@@ -28,14 +38,14 @@ export default function MealScreen({ route, navigation }: MealsScreenProps) {
       headerRight: () => {
         return (
           <IconButton
-            onPress={headerButtonPressHandler}
-            icon="star"
+            onPress={changeFavouriteStatusHandler}
+            icon={mealIsFavourite ? "star" : "star-outline"}
             color="black"
           />
         );
       },
     });
-  }, [title, navigation, headerButtonPressHandler]);
+  }, [title, navigation, changeFavouriteStatusHandler]);
 
   return (
     <ScrollView style={styles.rootContainer}>

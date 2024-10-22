@@ -10,6 +10,7 @@ import { Meal } from "./models/meal";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import FavouritesScreen from "./screens/FavouritesScreen";
 import { Ionicons } from "@expo/vector-icons";
+import FavouritesContextProvider from "./store/context/favourites-context";
 
 const Stack = createNativeStackNavigator<ParamList>();
 const Drawer = createDrawerNavigator<ParamList>();
@@ -50,29 +51,34 @@ export default function App() {
   return (
     <>
       <StatusBar style="dark" />
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerStyle: {
-              backgroundColor: "white",
-            },
-            headerTintColor: "black",
-            contentStyle: {
-              backgroundColor: "white",
-            },
-          }}
-        >
-          <Stack.Screen
-            name="Drawer"
-            component={DrawerNavigator}
-            options={{
-              headerShown: false,
+      <FavouritesContextProvider>
+        <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: "white",
+              },
+              headerTintColor: "black",
+              contentStyle: {
+                backgroundColor: "white",
+              },
             }}
-          />
-          <Stack.Screen name="MealsOverview" component={MealsOverviewScreen} />
-          <Stack.Screen name="Meal" component={MealScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
+          >
+            <Stack.Screen
+              name="Drawer"
+              component={DrawerNavigator}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="MealsOverview"
+              component={MealsOverviewScreen}
+            />
+            <Stack.Screen name="Meal" component={MealScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </FavouritesContextProvider>
     </>
   );
 }

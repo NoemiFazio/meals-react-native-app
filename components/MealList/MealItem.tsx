@@ -7,10 +7,10 @@ import {
   Platform,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { Meal } from "../models/meal";
+import { Meal } from "../../models/meal";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { ParamList } from "../App";
-import MealDetails from "./MealDetails";
+import { ParamList } from "../../App";
+import MealDetails from "../MealDetails";
 
 export default function MealItem(props: Meal) {
   const navigation = useNavigation<NativeStackNavigationProp<ParamList>>();
