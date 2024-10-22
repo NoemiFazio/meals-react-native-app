@@ -11,7 +11,6 @@ const initialState: FavouritesState = {
 const favouritesSlice = createSlice({
   name: "favourites",
   initialState,
-  // i reducers sono funzioni usate per cambiare lo stato
   reducers: {
     addFavourite: (state, action) => {
       state.ids.push(action.payload.id);
